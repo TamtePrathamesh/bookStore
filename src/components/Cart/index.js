@@ -6,9 +6,12 @@ import { Layout, InputNumber } from "antd";
 import { getRandomNumber } from "../../utils";
 import Authentication from "../auth";
 import { CloseCircleTwoTone, ShoppingCartOutlined } from "@ant-design/icons";
+
 import "./style.scss";
 
 const { Header, Content } = Layout;
+
+/*cart Page */
 
 const Cart = () => {
   const history = useHistory();
@@ -24,6 +27,7 @@ const Cart = () => {
     });
   }, []);
 
+  /* method to calculate total purchase amount */
   const calculateTotal = useCallback(() => {
     if (item.length > 0) {
       let result = 0;
@@ -36,6 +40,7 @@ const Cart = () => {
 
   const myPrice = useMemo(() => calculateTotal(), [calculateTotal]);
 
+  /*method to remove items from carts */
   const removeItem = (id) => {
     const items = item.filter((i) => i.bookID !== id);
     getByIndex("email", userEmail).then((res) => {
@@ -52,6 +57,7 @@ const Cart = () => {
     });
   };
 
+  /*place order with your book in cart */
   const placeOrder = () => {
     if (item.length > 0) {
       const orders = item.map((i) => {
@@ -72,6 +78,7 @@ const Cart = () => {
     }
   };
 
+  /* updating quantity of book in cart */
   const updateValue = (i, e) => {
     getByIndex("email", userEmail).then((res) => {
       if (res) {

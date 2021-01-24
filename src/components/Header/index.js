@@ -10,11 +10,6 @@ import "./style.scss";
 const { Header } = Layout;
 
 const HeaderComp = () => {
-  const onLogOut = () => {
-    Authentication.setLogin(false);
-    Authentication.setEmail("");
-    history.push("/login");
-  };
   const history = useHistory();
   const { getByIndex } = useIndexedDB("users");
   const [count, setCount] = useState(0);
@@ -29,6 +24,13 @@ const HeaderComp = () => {
     });
     return count;
   };
+
+  const onLogOut = () => {
+    Authentication.setLogin(false);
+    Authentication.setEmail("");
+    history.push("/login");
+  };
+
   return (
     <div>
       <Header>

@@ -36,6 +36,7 @@ const BookDetail = (props) => {
     }
   }, []);
 
+  /* add items in cart*/
   const addToCart = () => {
     console.log("the user", user);
     getByIndex("email", Authentication.getEmail()).then(
