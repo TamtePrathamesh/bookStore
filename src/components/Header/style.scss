@@ -1,0 +1,77 @@
+.header {
+  display: flex;
+  .header-title {
+    color: white;
+    font-size: 60px;
+    font-weight: 900;
+  }
+  .items {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .email {
+      margin-left: 10px;
+      color: white;
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    .cart-icon {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      background-image: url("../../assets/shopping-cart.svg");
+      background-size: contain;
+    }
+    .exist {
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      background-image: url("../../assets/exit.svg");
+      background-size: contain;
+    }
+  }
+
+  
+}
+@media screen and (max-width: 720px) {
+    .header {
+      .header-title {
+        color: white;
+        font-size: 40px;
+        font-weight: 900;
+        padding-right: 10px;
+      }
+      .items {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .email {
+          display: none;
+          margin-left: 10px;
+          color: white;
+          font-size: 14px;
+          font-weight: 300;
+        }
+
+        .cart-icon {
+          cursor: pointer;
+          width: 20px;
+          height: 20px;
+          background-image: url("../../assets/shopping-cart.svg");
+          background-size: contain;
+        }
+        .exist {
+          cursor: pointer;
+          width: 20px;
+          height: 20px;
+          background-image: url("../../assets/exit.svg");
+          background-size: contain;
+        }
+      }
+    }
+  }

@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { initDB, useIndexedDB } from "react-indexed-db";
+import { DBConfig } from "./store/";
+import Routes from "./Routes";
 
-function App() {
+import "./App.css";
+
+initDB(DBConfig);
+
+const App = () => {
+  const { add } = useIndexedDB("books");
+  const [isData, setIsData] = useState(false);
+
+  useEffect(() => {
+    try {
+     
+         
+            fetch(
+              "https://s3-ap-southeast-1.amazonaws.com/he-public-data/books8f8fe52.json"
+            )
+              .then((res) => res.json())
+              .then((res) => {
+                res.slice(0, 50).map((data) =>
+                  add({ id: data.bookID, key: data.bookID, ...data }).then(
+                    (error) => {
+                      console.log(error);
+                      return '';
+                    }
+                  )
+                );
+                setIsData(true);
+              });
+         
+        
+    } catch (error) {}
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes />
     </div>
   );
-}
+};
 
 export default App;
